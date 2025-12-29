@@ -82,7 +82,7 @@ export function WithdrawalModal({ maxAmount }: WithdrawalModalProps) {
         resetForm();
         toast({
           title: "Request Submitted!",
-          description: `Your withdrawal request of ${amount} Coins via ${paymentMode} has been sent to the project owner for approval.`,
+          description: `${amount} Coins have been deducted from your balance. The project owner will approve the payout shortly.`,
         });
       },
       onError: (err) => {

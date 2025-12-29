@@ -83,14 +83,8 @@ export async function registerRoutes(
       return res.status(400).json({ message: "Insufficient coins" });
     }
 
-    // Deduct coins immediately or just record? 
-    // Instructions say "Coins cannot be withdrawn directly... Request sent to owner". 
-    // Usually we deduct on approval or hold them. 
-    // Let's just create request. But wait, "Deduct 2 Coins" logic is for wrong answers.
-    // For withdrawal, we should probably check balance but maybe not deduct until approved?
-    // Or deduct pending? Let's keep it simple: just create request, don't deduct yet, or deduct and refund if denied.
-    // "Coins cannot be withdrawn directly by users" implies manual process.
-    // Let's just Create Request.
+    // Deduct coins immediately upon request submission
+    await storage.deductUserCoins(dbUser.id, amount);
 
     const withdrawal = await storage.createWithdrawal({ 
       amount, 
@@ -112,9 +106,7 @@ export async function registerRoutes(
     const [withdrawalToApprove] = await db.select().from(withdrawals).where(eq(withdrawals.id, id));
     if (!withdrawalToApprove) return res.status(404).json({ message: "Withdrawal not found" });
 
-    // Deduct coins
-    await storage.deductUserCoins(withdrawalToApprove.userId, withdrawalToApprove.amount);
-    
+    // Coins are now deducted upon request, so we don't deduct again on approval
     // Update status
     const withdrawal = await storage.updateWithdrawalStatus(id, "approved");
     res.json(withdrawal);
@@ -126,6 +118,16 @@ export async function registerRoutes(
     if (!dbUser?.isAdmin) return res.status(403).json({ message: "Forbidden" });
 
     const id = parseInt(req.params.id);
+    
+    // Get withdrawal first to refund if denied
+    const [withdrawalToDeny] = await db.select().from(withdrawals).where(eq(withdrawals.id, id));
+    if (!withdrawalToDeny) return res.status(404).json({ message: "Withdrawal not found" });
+
+    // Refund coins if denied and was pending
+    if (withdrawalToDeny.status === "pending") {
+      await storage.addCoins(withdrawalToDeny.userId, withdrawalToDeny.amount);
+    }
+    
     const withdrawal = await storage.updateWithdrawalStatus(id, "denied");
     res.json(withdrawal);
   });

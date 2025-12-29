@@ -13,6 +13,7 @@ export interface IStorage extends IAuthStorage {
   getWithdrawals(): Promise<(Withdrawal & { user: User })[]>;
   updateWithdrawalStatus(id: number, status: "approved" | "denied"): Promise<Withdrawal>;
   deductUserCoins(userId: string, amount: number): Promise<User>;
+  addCoins(userId: string, amount: number): Promise<User>;
 
   // Settings
   getSettings(): Promise<Setting>;
@@ -79,6 +80,19 @@ export class DatabaseStorage implements IStorage {
     if (!user) throw new Error("User not found");
 
     const newCoins = Math.max(0, (user.coins || 0) - amount);
+    const [updatedUser] = await db
+      .update(users)
+      .set({ coins: newCoins })
+      .where(eq(users.id, userId))
+      .returning();
+    return updatedUser;
+  }
+
+  async addCoins(userId: string, amount: number): Promise<User> {
+    const [user] = await db.select().from(users).where(eq(users.id, userId));
+    if (!user) throw new Error("User not found");
+
+    const newCoins = (user.coins || 0) + amount;
     const [updatedUser] = await db
       .update(users)
       .set({ coins: newCoins })

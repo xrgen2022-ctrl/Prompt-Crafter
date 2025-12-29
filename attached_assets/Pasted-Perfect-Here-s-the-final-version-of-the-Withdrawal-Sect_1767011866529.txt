@@ -1,0 +1,60 @@
+Perfect! Here’s the **final version of the Withdrawal Section** with automatic deduction immediately **after the withdrawal request is submitted** (no need to wait for owner approval to show deducted balance, but owner still approves the actual payout).
+
+---
+
+### 💸 Withdrawal Section (Final Version – Auto Deduct)
+
+**Withdrawal Rules:**
+
+1. Users **cannot withdraw more coins than their current balance**.
+
+   * If requested withdrawal > current balance, system responds:
+
+     ```
+     You don’t have enough coins to withdraw that amount. Your current balance is X Coins.
+     ```
+2. Ask the user: **“Which mode of payment do you want? GCash or Maya?”**
+3. Ask for the corresponding account details:
+
+   * **GCash:** mobile number linked to GCash
+   * **Maya:** mobile number or email linked to Maya
+4. Upon submission of the withdrawal request:
+
+   * **Automatically deduct the requested coin amount** from the user’s balance.
+   * Update balance immediately in the profile.
+5. Log the withdrawal request with:
+
+   * Username
+   * Requested coin amount
+   * Payment mode
+   * Account details
+   * Date & time
+6. Send the request **to the Project Owner** for approval of actual payout.
+
+**Example Flow:**
+
+```
+User: I want to withdraw 10 Coins.
+System: Which mode of payment do you want? GCash or Maya?
+User: GCash
+System: Please provide your GCash number.
+User: 09171234567
+System: Your withdrawal request of 10 Coins via GCash has been submitted.
+System: 10 Coins have been deducted from your balance. Current balance: 5 Coins
+System: The project owner will approve the payout shortly.
+```
+
+* Only the **Project Owner** approves the payout.
+* Users **cannot manually edit their balance**.
+* Negative balances are **strictly prohibited**.
+
+---
+
+If you want, I can now **merge this with the full Math Random Question + Coin System instructions** into **one complete ready-to-use ChatGPT instruction set**, fully polished with:
+
+* Random Math Questions
+* Correct/Incorrect coin rules
+* Balance Profile
+* Withdrawal with GCash/Maya and **auto deduction**
+
+Do you want me to do that?
