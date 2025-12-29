@@ -9,6 +9,8 @@ export const withdrawals = pgTable("withdrawals", {
   id: serial("id").primaryKey(),
   userId: varchar("user_id").references(() => users.id).notNull(),
   amount: integer("amount").notNull(),
+  paymentMode: text("payment_mode", { enum: ["GCash", "Maya"] }).notNull(),
+  accountDetails: text("account_details").notNull(),
   status: text("status", { enum: ["pending", "approved", "denied"] }).default("pending").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });
@@ -30,6 +32,8 @@ export const withdrawalsRelations = relations(withdrawals, ({ one }) => ({
 
 export const insertWithdrawalSchema = createInsertSchema(withdrawals).pick({
   amount: true,
+  paymentMode: true,
+  accountDetails: true,
 });
 
 export const insertSettingsSchema = createInsertSchema(settings).omit({
