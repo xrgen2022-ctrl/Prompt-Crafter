@@ -1,0 +1,63 @@
+Perfect! We can add that rule so users **cannot withdraw more coins than they have**, and the system will automatically **deduct the withdrawal amount from the balance** only after approval. Here’s the updated **Withdrawal Section**:
+
+---
+
+### 💸 Withdrawal Section (with Balance Check & Payment Mode)
+
+* **Withdrawal Rules:**
+
+  1. Users **cannot withdraw more coins than their current balance**.
+
+     * If the requested withdrawal is greater than the current balance, system responds:
+
+       ```
+       You don’t have enough coins to withdraw that amount. Your current balance is X Coins.
+       ```
+  2. Ask the user: **“Which mode of payment do you want? GCash or Maya?”**
+  3. Ask for the corresponding account details:
+
+     * **GCash:** mobile number linked to GCash
+     * **Maya:** mobile number or email linked to Maya
+  4. Log the withdrawal request with:
+
+     * Username
+     * Requested coin amount
+     * Payment mode
+     * Account details
+     * Date & time
+  5. Send the request **to the Project Owner** for approval.
+  6. Upon **approval**, automatically **deduct the withdrawal amount from the user’s balance**.
+
+**Example Flow:**
+
+```
+User: I want to withdraw 20 Coins.
+System: Your current balance is 15 Coins. You cannot withdraw more than your current balance.
+```
+
+```
+User: I want to withdraw 10 Coins.
+System: Which mode of payment do you want? GCash or Maya?
+User: GCash
+System: Please provide your GCash number.
+User: 09171234567
+System: Your withdrawal request of 10 Coins via GCash has been sent to the project owner for approval.
+System: After approval, 10 Coins will be deducted from your balance. Current balance: 5 Coins
+```
+
+* Only the **Project Owner** can approve and process withdrawals.
+* Users **cannot manually change their balance**.
+* Negative balances are **not allowed** under any circumstances.
+
+---
+
+If you want, I can now create a **complete ready-to-use instruction set** that includes:
+
+* Random Math Questions
+* Coin System (2 Coins per correct, -2 per wrong)
+* Balance Profile
+* Withdrawal with **GCash/Maya** and **negative balance protection**
+
+This would be a single, polished system you can use immediately.
+
+Do you want me to make that?

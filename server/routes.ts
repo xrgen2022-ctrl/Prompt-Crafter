@@ -104,24 +104,16 @@ export async function registerRoutes(
     if (!dbUser?.isAdmin) return res.status(403).json({ message: "Forbidden" });
 
     const id = parseInt(req.params.id);
-    const withdrawal = await storage.updateWithdrawalStatus(id, "approved");
     
-    // Here we should probably deduct coins if not already deduced?
-    // The requirement is simple logging.
-    // "When a user requests withdrawal: Log the request... Owner decides: Approval... Payment method"
-    // So it's manual.
-    // But we should probably deduct coins from user balance upon approval so they don't withdraw twice.
-    if (withdrawal) {
-      // deduct coins
-      // storage.updateUserStats(withdrawal.userId, -withdrawal.amount, true/false? No, this is stats update)
-      // We need a way to just update coins.
-      // Reuse updateUserStats with isCorrect=true (hacky) or add method.
-      // I'll add a method or just use `updateUserStats` but 0 questions increment?
-      // `updateUserStats` increments questions.
-      // I should update `storage` to allow simple coin adjustment.
-      // For now, I'll skip auto-deduction logic to keep it simple as per "Log the request".
-    }
+    // Get withdrawal first to know amount and user
+    const [withdrawalToApprove] = await db.select().from(withdrawals).where(eq(withdrawals.id, id));
+    if (!withdrawalToApprove) return res.status(404).json({ message: "Withdrawal not found" });
 
+    // Deduct coins
+    await storage.deductUserCoins(withdrawalToApprove.userId, withdrawalToApprove.amount);
+    
+    // Update status
+    const withdrawal = await storage.updateWithdrawalStatus(id, "approved");
     res.json(withdrawal);
   });
 
