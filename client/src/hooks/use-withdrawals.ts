@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { api, buildUrl, type InsertWithdrawal } from "@shared/routes";
+import { api, buildUrl, type MathAnswerInput, type MathAnswerResponse, type MathQuestionResponse, type SettingsResponse, type WithdrawalResponse } from "@shared/routes";
+import { type InsertWithdrawal } from "@shared/schema";
 
 export function useWithdrawals() {
   return useQuery({

@@ -33,7 +33,7 @@ export default function Dashboard() {
 
   // Safe fallback for stats if loading fails or initial state
   const coins = stats?.coins ?? 0;
-  const totalAnswers = stats?.totalAnswers ?? 0;
+  const totalAnswers = stats?.totalQuestions ?? 0;
   const correctAnswers = stats?.correctAnswers ?? 0;
   const accuracy = totalAnswers > 0 
     ? Math.round((correctAnswers / totalAnswers) * 100) 

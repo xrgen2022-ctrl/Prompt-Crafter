@@ -89,7 +89,12 @@ export async function registerRoutes(
     // "Coins cannot be withdrawn directly by users" implies manual process.
     // Let's just Create Request.
 
-    const withdrawal = await storage.createWithdrawal({ amount, userId: dbUser.id });
+    const withdrawal = await storage.createWithdrawal({ 
+      amount, 
+      userId: dbUser.id,
+      paymentMode: req.body.paymentMode,
+      accountDetails: req.body.accountDetails
+    });
     res.status(201).json(withdrawal);
   });
 
