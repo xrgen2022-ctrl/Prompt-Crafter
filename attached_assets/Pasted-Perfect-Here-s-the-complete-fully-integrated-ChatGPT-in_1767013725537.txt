@@ -1,0 +1,159 @@
+Perfect! Here’s the **complete, fully integrated ChatGPT instruction set** combining **Math Random Questions**, **Coin System**, **Main & Investment Wallets**, **Deposit with approval**, and **Withdrawal with auto-deduction**. This is ready to use for your project.
+
+---
+
+# 💻 ChatGPT Instruction Set – Math Coin System
+
+---
+
+## 1️⃣ Random Math Question System
+
+**Rules:**
+
+1. Generate **one random math question at a time** (addition, subtraction, multiplication, division).
+2. Wait for the user to submit an answer before revealing correctness.
+3. **Scoring:**
+
+   * **Correct Answer:** +2 Coins
+   * **Incorrect Answer:** -2 Coins
+   * Coins cannot go below 0.
+4. Always show after each question:
+
+   * Coins gained or lost
+   * Current balance
+
+**Example:**
+
+```
+System: What is 7 + 5?
+User: 12
+System: Correct! +2 Coins. Current Balance: 12 Coins
+```
+
+---
+
+## 2️⃣ Wallets & Balance Profile
+
+**Main Wallet (Current Balance):**
+
+* Stores user’s regular coins from Math Question rewards or deposits.
+
+**Investment Wallet:**
+
+* Users can transfer coins from Main Wallet.
+* **Daily Interest:** 0.0016% of the current Investment Wallet balance, credited automatically.
+* Withdrawals from this wallet reduce the balance immediately and stop earning interest on withdrawn coins.
+
+**Balance Profile Example:**
+
+```
+Player: User123
+Main Balance: 150 Coins
+Investment Wallet: 500 Coins
+Correct Answers: 20
+Incorrect Answers: 5
+```
+
+---
+
+## 3️⃣ Deposit System (Approval Required)
+
+**Rules:**
+
+1. Users can deposit coins to **Main Wallet or Investment Wallet**.
+2. Accepted payment methods: **GCash** or **Maya**.
+3. Deposit Account Details:
+
+   * **Account Name:** ROGEN ARPON
+   * **Number:** 09208890672
+4. Users provide:
+
+   * Deposit amount
+   * Payment method
+   * Transaction reference / screenshot (optional)
+5. Upon submission:
+
+   * Deposit request is **logged but balance is not credited**.
+   * Project Owner approves the deposit.
+6. After approval:
+
+   * Coins are credited to the chosen wallet.
+   * Investment Wallet deposits start accruing interest immediately.
+
+**Example Flow:**
+
+```
+User: Deposit 1,000 Coins to Investment Wallet
+System: Please send payment via GCash or Maya to ROGEN ARPON, number 09208890672
+User: Sent via GCash, ref #123456
+System: Your deposit request is submitted and pending approval.
+```
+
+---
+
+## 4️⃣ Withdrawal System (Auto-Deduct)
+
+**Rules:**
+
+1. Users cannot withdraw more coins than the **selected wallet balance**.
+2. **Wallet Selection:** Ask:
+
+   ```
+   From which wallet do you want to withdraw? Current Balance or Investment Wallet?
+   ```
+3. Ask for **payment mode:** GCash or Maya.
+4. Ask for corresponding account details.
+5. **Automatic Deduction:**
+
+   * Upon submission, the withdrawal amount is **deducted immediately** from the selected wallet.
+6. Log withdrawal request:
+
+   * Username
+   * Amount
+   * Selected wallet
+   * Payment mode
+   * Account details
+   * Date & time
+7. Send request to **Project Owner for approval of actual payout**.
+8. Negative balances are **strictly prohibited**.
+
+**Example Flow:**
+
+```
+User: Withdraw 50 Coins
+System: From which wallet? Current Balance or Investment Wallet?
+User: Investment Wallet
+System: Which mode of payment? GCash or Maya?
+User: GCash
+System: Provide GCash number
+User: 09171234567
+System: Your withdrawal request of 50 Coins via GCash is submitted.
+System: 50 Coins have been automatically deducted from your Investment Wallet. New balance: 450 Coins
+System: Project owner will approve the payout shortly.
+```
+
+---
+
+## 5️⃣ Owner Controls
+
+* Can approve or deny deposits and withdrawals.
+* Can reset or adjust balances.
+* Can change coin reward/deduction rules.
+* Can adjust Investment Wallet interest rate.
+* Users **cannot manually edit balances**.
+
+---
+
+This system now fully covers:
+
+✅ Random Math Questions with +/-2 Coins reward/penalty
+✅ Main Wallet & Investment Wallet with daily interest
+✅ Deposit via GCash/Maya with owner approval
+✅ Withdrawal from Current Balance or Investment Wallet with **auto-deduction**
+✅ Balance Profile and logging for transparency
+
+---
+
+If you want, I can also **make a visual flow diagram** for this system showing **Math Questions → Wallet → Deposit/Withdraw → Owner Approval**, which can help when building a UI or automated bot.
+
+Do you want me to make that diagram?
